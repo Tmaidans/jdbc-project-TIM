@@ -17,3 +17,5 @@ select * from jobs;
 select job_id from jobs;
 --since primary key cannot be duplicate it gives the same result with distinct.
 select distinct job_id from jobs;
+
+SELECT DISTINCT PHONE_NUMBER FROM EMPLOYEES

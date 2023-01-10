@@ -1,34 +1,43 @@
-
 /*
-    - Percent  % --> for matching any sequence of characters. (0 or more)
-    - underscore _ --> for matching any single character.
+    - Percent sign % --> for matching any sequence of characters (0 or more)
+    - underscore _ --> for matching any single character (Jen__) will look for 2 more characters after
 
-    -contains
-    -startswith
-    -endswith
+    - constans
+    - starts with
+    - ends with
 
- */
 
---display all employees where first_name startswith B
-SELECT * FROM EMPLOYEES
-WHERE FIRST_NAME LIKE 'B%';
 
---display all employees where firstname startswith B and length of it 5 letter
-SELECT * FROM EMPLOYEES
-WHERE FIRST_NAME LIKE 'B____';
+--display all employess where first name starts with B
+*/
 
---display 5 letter firstname from employees where middle char is z
-SELECT * FROM EMPLOYEES
-WHERE FIRST_NAME like '__z__';
+SELECT *
+from EMPLOYEES
+WHERE FIRST_NAME like 'B%';
 
---display firstname endswith 'e';
-SELECT * FROM EMPLOYEES
-WHERE FIRST_NAME like '%e';
+--dispaly all employees where first name starts with B and leth is 5 lettes
 
---display all employees where job id contains IT
-SELECT * FROM EMPLOYEES
-WHERE JOB_ID LIKE '%IT%';
+SELECT *
+from EMPLOYEES
+WHERE FIRST_NAME like 'B____';
 
---display all information where firstname startwith H and ending with l
-SELECT * FROM EMPLOYEES
-WHERE FIRST_NAME LIKE 'H%l';
+--display 5 letter first name employee where middle name is Z
+
+select *
+from EMPLOYEES
+where FIRST_NAME like '__z__';
+
+--ends with 'e';
+
+select * from EMPLOYEES
+where FIRST_NAME like '%e';
+
+--display all emplyes where job id contains IT
+
+select * from EMPLOYEES
+where JOB_ID like '%IT%';
+
+--display all information where first name starts with H and ends with L
+
+select * from EMPLOYEES
+where FIRST_NAME like 'H%l';
