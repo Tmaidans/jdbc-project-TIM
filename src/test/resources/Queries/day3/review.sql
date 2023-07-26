@@ -1,36 +1,27 @@
-select * from EMPLOYEES;
+select *
+from EMPLOYEES;
 
---Task: how many locations we have for each country
-SELECT COUNTRY_ID,COUNT(*)
-FROM LOCATIONS
-GROUP BY COUNTRY_ID;
+--TASK-- how many locations we have for each country
+select COUNTRY_ID, count(*) as location_count
+from LOCATIONS
+group by COUNTRY_ID
+order by 1;
 
-    --order them based country_id asc
-SELECT COUNTRY_ID,COUNT(*)
-FROM LOCATIONS
-GROUP BY COUNTRY_ID
-ORDER BY COUNTRY_ID DESC;
+--TASK--what if i want to see only us, uk and ca
+select COUNTRY_ID, count(*) as location_count
+from LOCATIONS
+where COUNTRY_ID in ('US','UK','CA')
+group by COUNTRY_ID
+order by 1;
 
-    --what if I want to see only US,UK and CA
-SELECT COUNTRY_ID,COUNT(*)
-FROM LOCATIONS
-WHERE COUNTRY_ID IN('US','UK','CA')
-GROUP BY COUNTRY_ID
-ORDER BY COUNTRY_ID DESC;
+--TASK--display where location count is bigger than 2
+select COUNTRY_ID, count(*) as location_count
+from LOCATIONS
+where COUNTRY_ID in ('US','UK','CA')
+group by COUNTRY_ID
+having count(*) >2
+order by 1;
 
-    --display where location count is bigger than 2
-SELECT COUNTRY_ID,COUNT(*)
-FROM LOCATIONS
-WHERE COUNTRY_ID IN('US','UK','CA')
-GROUP BY COUNTRY_ID
-HAVING count(*)>2
-ORDER BY COUNTRY_ID DESC;
-
---TASK2: Display all employees salary in following format as column name Employees_salary
-    --Ex:
-        -- Steven makes 24000
-        -- Neena makes 17000
-SELECT * FROM EMPLOYEES;
-
-SELECT FIRST_NAME||' makes '||SALARY as Employees_salary
-FROM EMPLOYEES;
+--TASK--display all employees salary in following format: as column name Employees_salary
+select FIRST_NAME||' makes '||SALARY as Employees_salary
+from EMPLOYEES;

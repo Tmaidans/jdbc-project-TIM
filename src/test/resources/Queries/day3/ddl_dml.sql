@@ -1,117 +1,125 @@
-SELECt * FROM EMPLOYEES;
+select * from EMPLOYEES;
 
 /*
-create table syntax:
+create table syntax
     create table TableName(
         colName1 DataType Constraints,
-        colName2 DataType Constraints(optional)
-        colName3 DataType Constraints,
+        colName2 DataType Constranints(optional)
+        colName3 DataType Constrains,
         ...
     );
-*/
---- CREATE TABLE ----
-CREATE TABLE scrumteam_jamal(
-    emp_id Integer PRIMARY KEY,
+ */
+
+ --- CREATE TABLE ---
+create table scrumteam(
+    emp_id INTEGER primary key,
     first_name varchar(30) not null,
-    last_name varchar(20) not null ,
+    last_name varchar(20) not null,
     job_title varchar(20),
-    salary Integer
+    salary integer
 );
 
-SELECT * FROM SCRUMTEAM;
+select * from scrumteam;
 
 /*
-INSERT INTO tableName (column1, column2,…)
-VALUES (value1, value2 … );
-*/
+ INSERT INTO tableName (column1, column2,...)
+ VALUES (value1, value2,...)
+ */
 
-INSERT INTO SCRUMTEAM(emp_id, first_name, last_name, job_title, salary)
-VALUES (1,'Severus','Snape','Tester',130000);
+insert into scrumteam(emp_id, first_name, last_name, job_title, salary)
+values (1,'Severus','Snape','Tester',130000);
 
-INSERT INTO SCRUMTEAM(emp_id, first_name, last_name, job_title, salary)
-VALUES (2,'Harold','Finch','Developer',140000);
+select * from scrumteam;
 
-INSERT INTO SCRUMTEAM(emp_id, first_name, last_name, job_title, salary)
-VALUES (3,'Phoebe','Buffay','Scrum Master',90000);
+insert into scrumteam(emp_id, first_name, last_name, job_title, salary)
+values (2,'Tim','Maidans','Tester',140000);
 
-INSERT INTO SCRUMTEAM(emp_id, first_name, last_name, job_title, salary)
-VALUES (4,'Michael','Scofield','PO',150000);
+insert into scrumteam(emp_id, first_name, last_name, job_title, salary)
+values (3,'Dingus','Fergusson','Developer',150000);
 
---save changes so that other people,connections can get the updates.
+insert into scrumteam(emp_id, first_name, last_name, job_title, salary)
+values (4,'Crack','McGee','Scrum Master',90000);
+
+select *
+from scrumteam;
+
 commit;
 
 /*
-UPDATE table_name
-SET column1 = value1,
-column2 = value2 , …
-WHERE condition;
-*/
+ UPDATE table_name
+ SET column1 = value1,
+ column2 = value2, ...
+ WHERE condition;
+ */
+select * from scrumteam;
 
-SELECT * FROM SCRUMTEAM;
+update scrumteam
+set salary=11000
+where emp_id = 3;
 
-UPDATE SCRUMTEAM
-SET SALARY=SALARY+5000;
-
-UPDATE SCRUMTEAM
-SET SALARY= 110000
-WHERE EMP_ID = 3;
-
-commit work;
+COMMIT;
 
 /*
-DELETE FROM table_name
-WHERE condition;
-*/
+ DELETE FROM table_name
+ WHERE condition;
+ */
 
-DELETE FROM SCRUMTEAM
-WHERE EMP_ID = 4;
+ delete from scrumteam
+where emp_id = 4;
 
-commit ;
---CRUD
+select * from scrumteam;
+
+commit;
+
+    --CRUD--
 --CREATE (INSERT)
 --READ (SELECT)
 --UPDATE (UPDATE)
 --DELETE (DELETE)
 
+/*
+ ALTER TABLE table_name action;
 
---ALTER
+ ADD COLUMN - adds column
+ DROP COLUMN - removes column
+ RENAME COLUMN - renames the column name
+ RENAME TO - renames the table name
+ */
 
---ADD NEW COLUMN
-ALTER TABLE SCRUMTEAM ADD gender varchar(10);
+alter table scrumteam add gender varchar(10);
 
-SELECT * FROM SCRUMTEAM;
+SELECT * FROM scrumteam;
 
-UPDATE SCRUMTEAM
-SET gender = 'Male'
-WHERE EMP_ID = 1;
+update scrumteam
+set gender = 'Male'
+where emp_id =1;
 
---RENAME THE COLUMN
-ALTER TABLE SCRUMTEAM RENAME COLUMN salary TO annual_salary;
-
---DROP COLUMN
-
-ALTER TABLE SCRUMTEAM DROP COLUMN gender;
-
---RENAME TABLE
-ALTER TABLE SCRUMTEAM RENAME TO agileteam;
-
-SELECT * FROM agileteam;
-
---TRUNCATE
-TRUNCATE TABLE agileteam;
-
---DROP TABLE
-
-DROP TABLE agileteam;
+--RENAME THE COLUMN--
+alter table scrumteam rename column salary to annual_salary;
 
 commit;
 
-/*
-    IQ --> what is the difference between TRUNCATE and DROP
-        TRUNCATE --> it will delete table content,but keep the table
-        DROP --> it will delete all content and table itself.
+--DROP COLUMN--
+alter table scrumteam drop column gender;
+commit;
 
+select * from scrumteam;
 
- */
+--RENAME TABLE--
+alter table scrumteam rename to agileteam;
 
+select * from agileteam;
+commit;
+                                            --INTERVIEW QUESTION--
+    --TRUNCATE removes all data from table but leave table structure untouched--!!!
+    --DROP TABLE --> REMOVES THE TABLE
+
+--TRUNCATE
+truncate table agileteam;
+
+select * from agileteam;
+
+drop table agileteam;
+
+commit;
 
