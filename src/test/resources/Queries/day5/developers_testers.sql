@@ -1,5 +1,3 @@
-select * from EMPLOYEES;
-
 create table Developers(
                            Id_Number Integer primary key,
                            Names varchar(30),
@@ -38,17 +36,16 @@ SELECT * FROM Testers;
 
 
  */
-SELECT * FROM DEVELOPERS
-UNION
-SELECT * FROM TESTERS;
 
-SELECT NAMES FROM DEVELOPERS
-UNION
-SELECT NAMES FROM TESTERS;
+ select * from DEVELOPERS
+ union
+ select * from TESTERS;
 
-/*
+select ID_NUMBER from DEVELOPERS
+union
+select SALARY from TESTERS;
 
- UNION ALL
+UNION ALL
 
  - Dont Remove DUPS
  - Dont sort the results
@@ -68,7 +65,6 @@ MINUS
  It removes same data from first table and gives result from first table
 
  */
-
 SELECT NAMES FROM DEVELOPERS
 MINUS
 SELECT NAMES FROM TESTERS;
