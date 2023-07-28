@@ -53,7 +53,8 @@ select initcap(EMAIL||'@cydeo.com') as complete_email
 from EMPLOYEES;
 
 -- get char LENGTH
-select EMAIL, length(EMAIL) as email_length from EMPLOYEES;
+select EMAIL, length(EMAIL) as email_length
+from EMPLOYEES;
 
 -- TASK -- display all employees where first name length equals to 6
 select FIRST_NAME, length(FIRST_NAME) from EMPLOYEES
@@ -69,9 +70,11 @@ where FIRST_NAME like '______';
 
 --display initials from first name and last name
 --SUBSTr(column name, first index, num of characters)
-select substr(FIRST_NAME,0,1)||'.'||substr(LAST_NAME,0,1)||'.' as innitials from EMPLOYEES;
+select substr(FIRST_NAME,0,1)||'.'||substr(LAST_NAME,0,1)||'.' as innitials
+from EMPLOYEES;
 
-select substr(FIRST_NAME,0,1)||'.'||substr(LAST_NAME,0,1)||'.' as innitials from EMPLOYEES;
+select substr(FIRST_NAME,0,1)||'.'||substr(LAST_NAME,0,1)||'.' as innitials
+from EMPLOYEES;
 
 --how to start from the end
 select FIRST_NAME, substr(FIRST_NAME,-2,2) from EMPLOYEES;
