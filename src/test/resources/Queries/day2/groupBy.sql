@@ -54,3 +54,23 @@ where DEPARTMENT_ID is not null
 group by DEPARTMENT_ID
 order by 2;
 
+--display job ID with average salary more than 5k
+select * from EMPLOYEES;
+SELECT JOB_ID, round(avg(SALARY))
+from EMPLOYEES
+group by JOB_ID
+having avg(SALARY) >5000
+order by 2;
+
+--display duplicate first name from employee table
+select  FIRST_NAME , count (FIRST_NAME)
+from EMPLOYEES
+group by FIRST_NAME
+having count (FIRST_NAME) >1;
+
+--display department id where employee count s more than 5
+select DEPARTMENT_ID, count(*)
+from EMPLOYEES
+group by DEPARTMENT_ID
+having count(*)>5
+order by 2 desc;
