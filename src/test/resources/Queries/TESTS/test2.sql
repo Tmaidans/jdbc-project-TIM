@@ -95,6 +95,5 @@ select distinct SALARY from EMPLOYEES
 order by SALARY;
 
 select max(SALARY) from (select distinct SALARY from EMPLOYEES
-                    order by SALARY)
-where ROWNUM <6;
+order by SALARY) where ROWNUM <6;
 
