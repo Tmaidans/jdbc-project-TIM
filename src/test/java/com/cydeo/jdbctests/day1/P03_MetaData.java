@@ -62,7 +62,7 @@ public class P03_MetaData {
         while (rs.next()){
             //whatever we do, we will do for each row.
             //REGION_ID - 1 REGION_NAME - Europe
-            //REGION_ID - 2 REGION_NAME - Americasee
+            //REGION_ID - 2 REGION_NAME - Americase
 //            System.out.println(rsmd.getColumnName(1)+"-"+rs.getString(1));
             //iterate each column
             for (int i = 1; i <= columnCount; i++) {
@@ -72,7 +72,7 @@ public class P03_MetaData {
 
         }
 
-
+//test
 
 
         //close connection
