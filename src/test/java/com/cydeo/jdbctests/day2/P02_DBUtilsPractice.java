@@ -3,39 +3,45 @@ package com.cydeo.jdbctests.day2;
 import com.cydeo.jdbctests.utility.DB_Util;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class P02_DBUtilsPractice {
 
     @Test
-    public void task1(){
-        //create a connection
+    public void task1() {
+        //Create connection
         DB_Util.createConnection();
 
         //run query
-        DB_Util.runQuery("select first_name,last_name,salary from employees");
+        DB_Util.runQuery("select first_name, last_name, salary from employees");
 
-        //get result
-        System.out.println("====GET ME FIRST ROW FIRST COLUMN===");
+        //ret result
+        System.out.println();
+        System.out.println("===Get me first row first column===");
         System.out.println(DB_Util.getFirstRowFirstColumn());
 
-        System.out.println("====GET ME ALL COLUMN NAMES===");
+        System.out.println();
+        System.out.println("===Get me all column names===");
         System.out.println(DB_Util.getAllColumnNamesAsList());
 
-        System.out.println("====GET ME ALL FIRST NAMES===");
-        System.out.println(DB_Util.getColumnDataAsList(1));
+        System.out.println();
+        System.out.println("===Get me all first names===");
+        System.out.println(DB_Util.getColumnDataAsList("first_name"));
 
-        System.out.println("====GET ME HOW MANY ROWS WE HAVE===");
+        System.out.println();
+        System.out.println("===Get me how many rows we have===");
         System.out.println(DB_Util.getRowCount());
 
-        System.out.println("====GET ME CERTAIN ROW INFO===");
-        System.out.println("===GET ME AS MAP===");
-        System.out.println(DB_Util.getRowMap(1));
-        System.out.println("===GET ME AS LIST===");
+        System.out.println();
+        System.out.println("===Get me certain row info===");
+        System.out.println("===Get me as list===");
         System.out.println(DB_Util.getRowDataAsList(2));
-        System.out.println("===GET ME ALL DATA AS A LIST OF MAP ===");
+        System.out.println("===Get me as map===");
+        System.out.println(DB_Util.getRowMap(2));
 
+        System.out.println("===Get me data a list of maps===");
         List<Map<String, String>> allRowAsListOfMap = DB_Util.getAllRowAsListOfMap();
 
         for (Map<String, String> rowMap : allRowAsListOfMap) {
@@ -43,7 +49,8 @@ public class P02_DBUtilsPractice {
         }
 
 
-        //close the connection
+        //close connection
         DB_Util.destroy();
+
     }
 }

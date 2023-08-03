@@ -40,7 +40,7 @@ public class DB_Util {
      */
     public static void createConnection(){
 
-        String url      = "jdbc:oracle:thin:@54.86.2.212:1521:XE"; ;
+        String url      = "jdbc:oracle:thin:@18.212.16.21:1521:XE"; ;
         String username = "hr" ;
         String password = "hr" ;
 
@@ -85,7 +85,7 @@ public class DB_Util {
     }
 
     /**
-     * This method will reset the cursor to before first location
+     * This method will reset the cursor to before first location !!!!PRIVATE, USED IN OTHER METHODS BUT NOT ACCESSIBLE
      */
     private static void resetCursor(){
 
@@ -111,7 +111,7 @@ public class DB_Util {
             rowCount = rs.getRow() ;
         } catch (Exception e) {
             System.out.println("ERROR OCCURRED WHILE GETTING ROW COUNT " + e.getMessage() );
-        }finally {
+        }finally { //RUN NO MATTER WHAT
             resetCursor();
         }
 

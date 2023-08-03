@@ -10,37 +10,42 @@ import java.util.Map;
 
 public class P01_ListOfMaps {
 
-    String dbUrl = "jdbc:oracle:thin:@54.86.2.212:1521:XE";
-    String dbUsername ="hr";
+    //CONNECTION STRING
+    String dbUrl = "jdbc:oracle:thin:@18.212.16.21:1521:XE";
+    String dbUsername = "hr";
     String dbPassword = "hr";
 
     @Test
-    public void task1(){
-        Map<String,Object> rowMap1 = new HashMap<>();
+    public void task1() {
 
-        System.out.println("------ROW MAP 1-------");
-        rowMap1.put("FIRST_NAME","Steven");
-        rowMap1.put("LAST_NAME","King");
-        rowMap1.put("Salary",24000);
+        Map<String, Object> rowMap1 = new HashMap<>();
 
+        System.out.println("---------ROW MAP 1-----------");
+
+        rowMap1.put("FIRST_NAME", "Steven");
+        rowMap1.put("LAST_NAME", "King");
+        rowMap1.put("SALARY", 24000);
         System.out.println(rowMap1);
 
-        Map<String,Object> rowMap2 = new HashMap<>();
+        Map<String, Object> rowMap2 = new HashMap<>();
 
-        System.out.println("------ROW MAP 2-------");
-        rowMap2.put("FIRST_NAME","Neena");
-        rowMap2.put("LAST_NAME","Kochhar");
-        rowMap2.put("Salary",17000);
+        System.out.println("---------ROW MAP 2-----------");
 
+        rowMap2.put("FIRST_NAME", "Neena");
+        rowMap2.put("LAST_NAME", "Kochhar");
+        rowMap2.put("SALARY", 17000);
+        System.out.println(rowMap2);
 
-        List<Map<String,Object>> dataList = new ArrayList<>();
+        System.out.println("--------------------------------------------------------------");
+        List<Map<String, Object>> dataList = new ArrayList<>();
 
-        //we will put each of the row map to the list
+        //we will put each of the rowMaps into the list
         dataList.add(rowMap1);
         dataList.add(rowMap2);
 
         System.out.println(dataList);
         System.out.println(dataList.get(1).get("LAST_NAME"));
+
 
     }
 
@@ -48,50 +53,47 @@ public class P01_ListOfMaps {
     public void task2() throws SQLException {
 
         Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-        ResultSet rs = statement.executeQuery("select FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES");
-        //create rsmd to get column name and count
+        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = statement.executeQuery("select FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE ROWNUM<6");
         ResultSetMetaData rsmd = rs.getMetaData();
 
-        rs.next();// we need to move to first row to fill rowMap1
+        rs.next();//we need to move to first row to fill map 1
+        Map<String, Object> rowMap1 = new HashMap<>();
+        System.out.println("---------ROW MAP 1-----------");
 
-        Map<String,Object> rowMap1 = new HashMap<>();
-
-        System.out.println("------ROW MAP 1-------");
         rowMap1.put(rsmd.getColumnName(1), rs.getString(1));
-        rowMap1.put(rsmd.getColumnName(2),rs.getString(2));
-        rowMap1.put(rsmd.getColumnName(3),rs.getInt(3));
-
+        rowMap1.put(rsmd.getColumnName(2), rs.getString(2));
+        rowMap1.put(rsmd.getColumnName(3), rs.getString(3));
         System.out.println(rowMap1);
-        rs.next();// move pointer to second row
-        Map<String,Object> rowMap2 = new HashMap<>();
 
-        System.out.println("------ROW MAP 2-------");
+        rs.next();//moving to second row to get next set of data
+        Map<String, Object> rowMap2 = new HashMap<>();
+        System.out.println("---------ROW MAP 2-----------");
+
         rowMap2.put(rsmd.getColumnName(1), rs.getString(1));
-        rowMap2.put(rsmd.getColumnName(2),rs.getString(2));
-        rowMap2.put(rsmd.getColumnName(3),rs.getInt(3));
+        rowMap2.put(rsmd.getColumnName(2), rs.getString(2));
+        rowMap2.put(rsmd.getColumnName(3), rs.getString(3));
         System.out.println(rowMap2);
 
-        rs.next();// move pointer to third row
-        Map<String,Object> rowMap3 = new HashMap<>();
+        rs.next();//moving to second row to get next set of data
+        Map<String, Object> rowMap3 = new HashMap<>();
+        System.out.println("---------ROW MAP 3-----------");
 
-        System.out.println("------ROW MAP 3-------");
         rowMap3.put(rsmd.getColumnName(1), rs.getString(1));
-        rowMap3.put(rsmd.getColumnName(2),rs.getString(2));
-        rowMap3.put(rsmd.getColumnName(3),rs.getInt(3));
+        rowMap3.put(rsmd.getColumnName(2), rs.getString(2));
+        rowMap3.put(rsmd.getColumnName(3), rs.getString(3));
         System.out.println(rowMap3);
 
+        System.out.println("--------------------------------------------------------------");
+        List<Map<String, Object>> dataList = new ArrayList<>();
 
-        List<Map<String,Object>> dataList = new ArrayList<>();
-
-        //we will put each of the row map to the list
+        //we will put each of the rowMaps into the list
         dataList.add(rowMap1);
         dataList.add(rowMap2);
         dataList.add(rowMap3);
-
         System.out.println(dataList);
-        System.out.println(dataList.get(2).get("SALARY"));
 
+        System.out.println(dataList.get(1).get("LAST_NAME"));
 
         //close connection
         rs.close();
@@ -102,29 +104,27 @@ public class P01_ListOfMaps {
     @Test
     public void task3() throws SQLException {
         Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-        ResultSet rs = statement.executeQuery("select FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE ROWNUM < 6");
-        //create rsmd to get column name and count
+        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = statement.executeQuery("select FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEES WHERE ROWNUM<6");
         ResultSetMetaData rsmd = rs.getMetaData();
 
-        //Create your list of maps to keep information
-        List<Map<String,Object>> dataList = new ArrayList<>();
+        //create your list of maps to keep information
+        List<Map<String, Object>> dataList = new ArrayList<>();
 
-        //how many columns we have
+        //how many columns do we have?
         int columnCount = rsmd.getColumnCount();
-
         //iterate through each row
-        while (rs.next()){
-            //create an empty map to hold one row of information
-            Map<String,Object> rowMap = new HashMap<>();
-            //iterate each column dynamically to fill the map
+        while (rs.next()) {
+            //create empty map to hold one row of information
+            Map<String, Object> rowMap = new HashMap<>();
+            //iterate each row dynamically to fill the map
             for (int i = 1; i <= columnCount; i++) {
-                //key = column name, value= column value
-                rowMap.put(rsmd.getColumnName(i),rs.getString(i));
+                rowMap.put(rsmd.getColumnName(i), rs.getString(i));
             }
 
-            //add the one row information to the list
+            //add one row of information to the list
             dataList.add(rowMap);
+
         }
 
         for (Map<String, Object> row : dataList) {
@@ -137,4 +137,5 @@ public class P01_ListOfMaps {
         statement.close();
         conn.close();
     }
+
 }
